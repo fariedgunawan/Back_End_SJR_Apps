@@ -15,6 +15,16 @@ const User = {
     const query = "SELECT * FROM users WHERE id = ?";
     db.query(query, [id], callback);
   },
+
+  updatePassword: (id, newPassword, callback) => {
+    const query = "UPDATE users SET password = ? WHERE id = ?";
+    db.query(query, [newPassword, id], callback);
+  },
+
+  updateProfile: (id, name, email, phone_number, callback) => {
+    const query = "UPDATE users SET name = ?, email = ?, phone_number = ? WHERE id = ?";
+    db.query(query, [name, email, phone_number, id], callback);
+  },
 };
 
 module.exports = User;

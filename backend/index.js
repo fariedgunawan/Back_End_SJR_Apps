@@ -1,9 +1,11 @@
 const express = require('express');
+const cors = require('cors');  // Import middleware cors
 const bodyParser = require('body-parser');
 const authRoutes = require('./routes/authRoutes');
 
 const app = express();
 
+app.use(cors());  // Gunakan cors
 app.use(bodyParser.json());
 app.use('/api/auth', authRoutes);
 
