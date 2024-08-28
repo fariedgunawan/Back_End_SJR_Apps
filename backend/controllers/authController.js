@@ -97,22 +97,4 @@ const updatePassword = (req, res) => {
   });
 };
 
-const updateProfile = (req, res) => {
-  const { name, email, phone_number } = req.body;
-  const token = req.headers.authorization?.split(" ")[1];
-
-  if (!token) return res.status(401).json({ message: "No token provided" });
-
-  jwt.verify(token, "your_jwt_secret", (err, decoded) => {
-    if (err) return res.status(403).json({ message: "Invalid token" });
-
-    const userId = decoded.id;
-
-    User.updateProfile(userId, name, email, phone_number, (err, results) => {
-      if (err) return res.status(500).json({ error: err.message });
-      res.json({ message: "Profile updated successfully" });
-    });
-  });
-};
-
-module.exports = { register, login, getUserInfo, updatePassword, updateProfile };
+module.exports = { register, login, getUserInfo, updatePassword };
